@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>骨折AI智慧诊疗全流程 · 智骨科技</title>
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/mode.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <img src="images/logo.png" alt="智骨科技">
+      <span>智骨科技</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="workflow.html" class="active">全流程</a>
+      <a href="chat.html">AI 对话</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <h1>骨折AI智慧诊疗全流程</h1>
+  <p class="sub">患者多模态脱敏数据 → AI 检测 → 3D打印内植物数据 → 3D模型 → 诊疗方案 → 恢复计划</p>
+</header>
+
+<div class="steps-wrap">
+  <div class="container">
+    <div class="steps">
+      <button class="step-btn active" data-step="1"><span class="num">01</span>患者多模态脱敏数据</button>
+      <button class="step-btn" data-step="2"><span class="num">02</span>AI 影像检测</button>
+      <button class="step-btn" data-step="3"><span class="num">03</span>3D打印内植物数据</button>
+      <button class="step-btn" data-step="4"><span class="num">04</span>3D打印内植物模型</button>
+      <button class="step-btn" data-step="5"><span class="num">05</span>AI 诊疗方案</button>
+      <button class="step-btn" data-step="6"><span class="num">06</span>AI 恢复计划</button>
+    </div>
+  </div>
+</div>
+
+<main class="container" style="padding-top:30px">
+
+  <!-- 步骤 1 -->
+  <section class="panel" data-step="1">
+    <div class="card">
+      <div class="panel-head">
+        <h2>患者多模态脱敏数据</h2>
+        <span class="step-tag">STEP 01</span>
+      </div>
+      <p class="panel-desc">以下影像均已脱敏处理。请选择一张作为本次诊疗的输入影像（默认第一张），也可以上传本机 CT / X 光图片，上传后将自动插入并选中。</p>
+      <div class="ct-grid" id="ctGrid"></div>
+      <div class="btn-row">
+        <button class="btn btn-outline" id="btnUploadData">⬆ 上传数据</button>
+        <button class="btn btn-primary" data-next="2">下一步：AI 检测 ➡</button>
+      </div>
+    </div>
+    <input type="file" id="fileData" accept="image/*" hidden>
+  </section>
+
+  <!-- 步骤 2 -->
+  <section class="panel" data-step="2">
+    <div class="card">
+      <div class="panel-head">
+        <h2>AI 影像检测</h2>
+        <span class="step-tag">STEP 02</span>
+      </div>
+      <p class="panel-desc">左侧为第 1 步选中的影像，点击「开始 AI 检测」后由视觉大模型输出结构化检测报告。</p>
+      <div class="notice" id="detectNotice">⚠ 当前使用内置示例数据完成检测，演示不受影响</div>
+      <div class="split">
+        <div class="img-panel">
+          <div class="img-box"><img id="detectImg" src="images/ct-sample-1.png" alt="待检测影像"></div>
+          <div class="img-name" id="detectName">当前影像：sacrum-ct-01.dcm</div>
+        </div>
+        <div class="report-block">
+          <div id="detectReport">
+            <div class="report-empty">
+              <span class="big">🔍</span>
+              尚未开始检测<br>点击下方「开始 AI 检测」生成报告
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-outline" data-prev="1">⬅ 上一步</button>
+        <button class="btn btn-accent" id="btnDetect">🤖 开始 AI 检测</button>
+        <button class="btn btn-primary" data-next="3">下一步：打印数据 ➡</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 步骤 3 -->
+  <section class="panel" data-step="3">
+    <div class="card">
+      <div class="panel-head">
+        <h2>3D打印内植物数据</h2>
+        <span class="step-tag">STEP 03</span>
+      </div>
+      <p class="panel-desc">定制化多孔钛合金接骨板的完整制造与质控参数（23 项），可直接下载 Excel 交付 3D 打印车间。</p>
+      <div class="table-wrap">
+        <table class="param">
+          <thead>
+            <tr><th>参数项</th><th>参数值</th><th>分类</th></tr>
+          </thead>
+          <tbody id="paramBody"></tbody>
+        </table>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-outline" data-prev="2">⬅ 上一步</button>
+        <button class="btn btn-outline" id="btnPrinter1">⬆ 上传3D打印机</button>
+        <button class="btn btn-accent" id="btnExcel">⬇ 下载 Excel</button>
+        <button class="btn btn-primary" data-next="4">下一步：3D 模型 ➡</button>
+      </div>
+    </div>
+    <input type="file" id="filePrinter" accept=".stl,.obj,.3mf,.step,.iges,.xlsx" hidden>
+  </section>
+
+  <!-- 步骤 4 -->
+  <section class="panel" data-step="4">
+    <div class="card">
+      <div class="panel-head">
+        <h2>3D打印内植物模型</h2>
+        <span class="step-tag">STEP 04</span>
+      </div>
+      <p class="panel-desc">根据患者 CT 数据生成的定制化接骨板三维模型，点击图片可放大查看。</p>
+      <div class="img-panel">
+        <div class="img-box" id="modelImgBox" style="min-height:340px">
+          <img src="images/model-3d.png" alt="定制化3D打印内植物三维模型" style="max-height:420px">
+        </div>
+        <div class="img-name">model-plate-sacrum.tgl · 定制化多孔钛接骨板</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-outline" data-prev="3">⬅ 上一步</button>
+        <button class="btn btn-outline" id="btnPrinter2">⬆ 上传3D打印机</button>
+        <button class="btn btn-primary" data-next="5">下一步：诊疗方案 ➡</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 步骤 5 -->
+  <section class="panel" data-step="5">
+    <div class="card">
+      <div class="panel-head">
+        <h2>AI 诊疗方案</h2>
+        <span class="step-tag">STEP 05</span>
+      </div>
+      <p class="panel-desc">病例：55 岁男性，骶骨骨折 Denis II 区，骨密度 T 值 -1.8。点击「生成诊疗方案」输出四部分完整方案。</p>
+      <div class="notice" id="treatNotice">⚠ 当前使用内置示例方案，演示不受影响</div>
+      <div id="treatReport">
+        <div class="report-empty">
+          <span class="big">🩺</span>
+          尚未生成诊疗方案<br>点击下方「生成诊疗方案」开始
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-outline" data-prev="4">⬅ 上一步</button>
+        <button class="btn btn-accent" id="btnTreat">🩺 生成诊疗方案</button>
+        <button class="btn btn-primary" data-next="6">下一步：恢复计划 ➡</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 步骤 6 -->
+  <section class="panel" data-step="6">
+    <div class="card">
+      <div class="panel-head">
+        <h2>AI 恢复计划</h2>
+        <span class="step-tag">STEP 06</span>
+      </div>
+      <p class="panel-desc">按治疗方式、距手术时间与年龄，生成四阶段个性化恢复计划。</p>
+      <div class="notice" id="recoveryNotice">⚠ 当前使用内置示例计划，演示不受影响</div>
+
+      <div id="recoveryOpts">
+        <div class="opt-group" id="optMethod">
+          <div class="opt-title"><span class="dot"></span>治疗方式</div>
+          <div class="opt-row">
+            <button class="opt selected" data-value="内固定手术">内固定手术</button>
+            <button class="opt" data-value="保守治疗">保守治疗</button>
+          </div>
+        </div>
+        <div class="opt-group" id="optTiming">
+          <div class="opt-title"><span class="dot"></span>距手术时间</div>
+          <div class="opt-row">
+            <button class="opt selected" data-value="1 周内">1 周内</button>
+            <button class="opt" data-value="1 个月">1 个月</button>
+            <button class="opt" data-value="3 个月">3 个月</button>
+            <button class="opt" data-value="6 个月">6 个月</button>
+          </div>
+        </div>
+        <div class="opt-group">
+          <div class="opt-title"><span class="dot"></span>年龄</div>
+          <div class="opt-row">
+            <input type="number" class="age-input" id="ageInput" value="55" min="1" max="120">
+            <span style="color:var(--text-light);font-size:14px;align-self:center">岁</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="recoveryReport">
+        <div class="report-empty">
+          <span class="big">📋</span>
+          尚未生成恢复计划<br>选择参数后点击下方「生成恢复计划」开始
+        </div>
+      </div>
+      <div class="stage-grid" id="stageGrid"></div>
+
+      <div class="btn-row">
+        <button class="btn btn-outline" data-prev="5">⬅ 上一步</button>
+        <button class="btn btn-accent" id="btnRecovery">📋 生成恢复计划</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="btn-row" style="margin:40px 0 70px">
+    <a href="index.html" class="btn btn-primary btn-lg">🏠 回到首页</a>
+  </div>
+
+</main>
+
+<footer class="footer">智骨科技 · 骨科智慧医疗解决方案</footer>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/knowledge.js"></script>
+<script src="js/gallery.js"></script>
+<script src="js/vendor/xlsx.full.min.js"></script>
+<script src="js/workflow.js"></script>
+
+</body>
+</html>

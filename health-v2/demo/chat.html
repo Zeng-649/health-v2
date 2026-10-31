@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 骨科智慧医疗助手 · 智骨科技</title>
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/mode.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <img src="images/logo.png" alt="智骨科技">
+      <span>智骨科技</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="workflow.html">全流程</a>
+      <a href="chat.html" class="active">AI 对话</a>
+    </div>
+  </div>
+</nav>
+
+<div class="chat-wrap">
+  <div class="card chat-card">
+
+    <div class="chat-head">
+      <h1>💬 AI 骨科智慧医疗助手</h1>
+      <p class="sub">以骶骨骨折为例 · DeepSeek 驱动 · 离线自动切换内置知识库</p>
+    </div>
+
+    <div class="notice" id="apiBanner">⚠ 当前使用内置知识库回答，演示不受影响</div>
+
+    <div class="chat-box" id="chatBox"></div>
+
+    <div class="chips" id="chips"></div>
+
+    <div class="chat-input-row">
+      <input type="text" class="chat-input" id="chatInput" placeholder="输入骨科相关问题，回车发送…" autocomplete="off">
+      <button class="send-btn" id="sendBtn">发送 ➤</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/knowledge.js"></script>
+<script src="js/chat.js"></script>
+
+</body>
+</html>
